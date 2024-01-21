@@ -45,6 +45,8 @@ namespace gfx
         static void DrawInfo(const math::Vec4& data, const math::IVec2& position = math::IVec2::Zero, const Color& color = draw_color);
         static void DrawInfo(const math::Quaternion& data, const math::IVec2& position = math::IVec2::Zero, const Color& color = draw_color);
         static void DrawInfo(const Font& data, const math::IVec2& position = math::IVec2::Zero, const Color& color = draw_color);
+
+        static const math::IVec2 ScreenDimensions;
     };
     
 #ifdef USE_TEMPLATED_DRAW_INFO

@@ -192,7 +192,7 @@ void kill_floor(EntityListMut entities, Resources resources)
         if (should_kill(entities[i]))
         {
             entities[i] = entities[--entity_count];
-            App::PlaySound(".\\TestData\\Test.wav");
+            // App::PlaySound(".\\TestData\\Test.wav");
         } else
         {
             i++;
@@ -239,7 +239,7 @@ void Init()
     const auto collider = Collider(AABB{ Vec2(testSprite->GetWidth(), testSprite->GetHeight()) });
     const auto rb = world.GetResourceMut<PhysicsManager>().CreateRigidbody(collider);
     rb->SetGravity(false);
-    world.SpawnEntity()->SetSprite(testSprite).SetRigidbody(rb);
+    world.SpawnEntity()->SetSprite(testSprite).SetRigidbody(rb).SetPosition(Vec2(Debug::ScreenDimensions / 2));
 }
 
 //------------------------------------------------------------------------

@@ -89,4 +89,6 @@ namespace gfx {
     Color Debug::draw_color = Color(255, 255, 255);
     IVec2 Debug::padding = IVec2(5);
     Font Debug::font = GLUT_BITMAP_8_BY_13;
+
+    const IVec2 Debug::ScreenDimensions = IVec2(APP_VIRTUAL_WIDTH, APP_VIRTUAL_HEIGHT);
 }
