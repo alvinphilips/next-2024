@@ -15,6 +15,13 @@ System::System(const SystemFunction& system, const SystemSchedule schedule)
     is_enabled = true;
 }
 
+System& System::SetTicksBetween(unsigned ticks_between)
+{
+    this->ticks_between = ticks_between;
+
+    return *this;
+}
+
 bool System::Restart()
 {
     const bool was_running = is_enabled;

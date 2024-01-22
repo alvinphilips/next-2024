@@ -4,6 +4,7 @@
 #define ENGINE_MATH_UTILS_H
 
 #include "vectors.h"
+#include "../../App/AppSettings.h"
 
 namespace math
 {
@@ -26,6 +27,8 @@ namespace math
     {
         return val < low ? low : val > high ? high : val;
     }
+
+    constexpr float TAU = PI * 2;
 }
 
 #endif

@@ -8,30 +8,41 @@
 
 namespace physics
 {
-    struct Rigidbody;
-    struct Collider;
+	struct Rigidbody;
+	struct Collider;
 }
+
+
 
 struct Entity
 {
-    unsigned long long id;
-    math::Vec2 position;
-    physics::Rigidbody* rigidbody = nullptr;
-    physics::Collider* collider = nullptr;
-    CSimpleSprite* sprite = nullptr;
+	unsigned long long id;
+	enum class Tag
+	{
+		DEFAULT,
+		PLAYER,
+		ENVIRONMENT,
+		ENEMY,
+		PROJECTILE,
+	} tag;
+	math::Vec2 position;
+	physics::Rigidbody* rigidbody = nullptr;
+	physics::Collider* collider = nullptr;
+	CSimpleSprite* sprite = nullptr;
 
-    explicit Entity();
-    
-    Entity(const Entity& other) noexcept;
-    Entity(Entity&& other) noexcept;
-    Entity& operator=(const Entity&) noexcept;
+	explicit Entity();
 
-    Entity& SetPosition(const math::Vec2& pos);
-    Entity& SetRigidbody(physics::Rigidbody* rigidbody);
-    Entity& SetCollider(physics::Collider* collider);
-    Entity& SetSprite(CSimpleSprite* sprite);
+	Entity(const Entity& other) noexcept;
+	Entity(Entity&& other) noexcept;
+	Entity& operator=(const Entity&) noexcept;
+
+	Entity& SetPosition(const math::Vec2& pos);
+	Entity& SetRigidbody(physics::Rigidbody* rigidbody);
+	Entity& SetCollider(physics::Collider* collider);
+	Entity& SetSprite(CSimpleSprite* sprite);
+	Entity& SetTag(Tag tag);
 private:
-    static unsigned long long current_id;
+	static unsigned long long current_id;
 };
 
 #endif

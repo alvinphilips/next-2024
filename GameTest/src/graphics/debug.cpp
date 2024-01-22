@@ -39,6 +39,26 @@ namespace gfx {
         DrawRect(padded_top_left, padded_dimensions, color);
     }
 
+    void Debug::DrawCircle(const math::IVec2& origin, const float radius, const Color& color)
+    {
+        DrawCircle(origin, radius, color, circle_steps);
+    }
+
+    void Debug::DrawCircle(const math::IVec2& origin, const float radius, const Color& color, const unsigned int steps)
+    {
+        if (steps == 0)
+        {
+	        return;
+        }
+        const float circle_step = (PI * 2) / (float) steps;
+        for (float i = 0; i <= PI * 2; i += circle_step)
+        {
+	        const auto start_pos = Vec2(sinf(i), cosf(i)) * radius + Vec2(origin);
+	        const auto end_pos = Vec2(sinf(i + circle_step), cosf(i + circle_step)) * radius + Vec2(origin);
+            App::DrawLine(start_pos.x, start_pos.y, end_pos.x, end_pos.y, color.r, color.g, color.b);
+        }
+    }
+
     void Debug::DrawInfo(const IVec2& data, const IVec2& position, const Color& color)
     {
         if (OUT_OF_BOUNDS(position)) { return; }
@@ -89,6 +109,7 @@ namespace gfx {
     Color Debug::draw_color = Color(255, 255, 255);
     IVec2 Debug::padding = IVec2(5);
     Font Debug::font = GLUT_BITMAP_8_BY_13;
+    unsigned int Debug::circle_steps = 6;
 
     const IVec2 Debug::ScreenDimensions = IVec2(APP_VIRTUAL_WIDTH, APP_VIRTUAL_HEIGHT);
 }

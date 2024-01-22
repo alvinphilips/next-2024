@@ -65,6 +65,10 @@ void World::RunUpdateSystems()
             continue;
         }
 
+        if (system.schedule == SystemSchedule::ConstantTick &&  update_tick_count % system.ticks_between != 0) {
+            continue;
+        }
+
         system.func(this->entities, this->resources);
 
         if (system.schedule == SystemSchedule::RunOnce)
@@ -72,6 +76,7 @@ void World::RunUpdateSystems()
             system.is_enabled = false;
         }
     }
+    update_tick_count++;
 }
 
 void World::RunRenderSystems()
@@ -83,6 +88,10 @@ void World::RunRenderSystems()
             continue;
         }
 
+        if (system.schedule == SystemSchedule::ConstantTick && render_tick_count % system.ticks_between != 0) {
+            continue;
+        }
+
         system.func(this->entities, this->resources);
 
         if (system.schedule == SystemSchedule::RunOnce)
@@ -90,4 +99,5 @@ void World::RunRenderSystems()
             system.is_enabled = false;
         }
     }
+    render_tick_count++;
 }

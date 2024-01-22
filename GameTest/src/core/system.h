@@ -30,6 +30,7 @@ enum class SystemSchedule
 {
     RunOnce,
     EachFrame,
+    ConstantTick,
 };
 
 typedef EntityContainer& EntityListMut;
@@ -41,11 +42,13 @@ struct System
     SystemFunction func;
     SystemSchedule schedule;
     bool is_enabled;
-
+    unsigned int ticks_between = 0;
     // Create a System.
     explicit System(const SystemFunction& system);
     // Create a System with a specified SystemSchedule.
     explicit System(const SystemFunction& system, SystemSchedule schedule);
+
+    System& SetTicksBetween(unsigned int ticks_between);
 
     // Enable a System, and return whether the System was already enabled.
     bool Restart();

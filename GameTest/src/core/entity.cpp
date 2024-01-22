@@ -6,6 +6,7 @@
 Entity::Entity()
 {
     id = ++current_id;
+    tag = Tag::DEFAULT;
 }
 
 Entity::Entity(const Entity& other) noexcept
@@ -16,6 +17,7 @@ Entity::Entity(const Entity& other) noexcept
 Entity::Entity(Entity&& other) noexcept
 {
     id = other.id;
+    tag = other.tag;
 
     if (rigidbody) {
         rigidbody->entity = nullptr;
@@ -49,6 +51,7 @@ Entity& Entity::operator=(const Entity& other) noexcept
     }
     
     id = other.id;
+    tag = other.tag;
     position = other.position;
     sprite = other.sprite;
 
@@ -106,6 +109,13 @@ Entity& Entity::SetCollider(physics::Collider* collider)
 Entity& Entity::SetSprite(CSimpleSprite* sprite)
 {
     this->sprite = sprite;
+
+    return *this;
+}
+
+Entity& Entity::SetTag(Tag tag)
+{
+    this->tag = tag;
 
     return *this;
 }

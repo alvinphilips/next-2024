@@ -12,6 +12,9 @@ class World
     EntityContainer entities;
     std::vector<System> systems;
     std::vector<System> render_systems;
+
+    unsigned long long update_tick_count = 0;
+    unsigned long long render_tick_count = 0;
     _resources resources;
 
 public:
